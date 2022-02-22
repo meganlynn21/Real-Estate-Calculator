@@ -93,6 +93,6 @@ def printValues():
     print(format("Average:  $","25s"),averageValue(listOfNums))
     print(format("Median: $","25s"),getMedian(listOfNums))
     print(format("Commission: $","25s"),commisionValue(listOfNums))
-    exit()                    
+                       
 
 main()
