@@ -1,6 +1,7 @@
 # Real Estate Calculator
 
 listOfNums = []
+dollar_sign = "$"
 
 #This function recieves the value from salesPrice and returns a float
 def getFloatInput():
@@ -50,28 +51,28 @@ def main():
 def sort_Min(lst):
     lstSorted = sorted(lst)
     minOfList = min(lstSorted)
-    minOfListFormatted = format(minOfList,"5,.2f")
+    minOfListFormatted = "$ " + format(minOfList,"5,.2f")
     return minOfListFormatted
 
 # Get maximum of list
 def sort_Max(lst):
     lstSorted = sorted(lst)
     maxOfList = max(lstSorted)
-    maxOfListFormatted = format(maxOfList,"5,.2f")
+    maxOfListFormatted = "$ " + format(maxOfList,"5,.2f")
     return maxOfListFormatted
 
 # Gets total
 def totalValue(lst):
     lstSorted = sorted(lst)
     sumOfList = sum(lstSorted)
-    sumOfListFormatted = format(sumOfList,"5,.2f")
+    sumOfListFormatted = "$ " + format(sumOfList,"5,.2f")
     return sumOfListFormatted
 
 # Gets average of list
 def averageValue(lst):
     lstSorted = sorted(lst)
     averageOfList = sum(lstSorted) / len(listOfNums)
-    averageOfListFormatted = format(averageOfList,"5,.2f")
+    averageOfListFormatted = "$ " + format(averageOfList,"5,.2f")
     return averageOfListFormatted
 
 # Gets commision Value
@@ -79,20 +80,18 @@ def commisionValue(lst):
     lstSorted = sorted(lst)
     total = sum(lstSorted)
     commission = total * .03
-    commissionFormatted = format(commission,"5,.2f")
+    commissionFormatted = "$ " + format(commission,"5,.2f")
     return commissionFormatted
 
-# This function prints values on screen of min, max, total, average, median, and commission 
+# This function prints values on screen of min, max, total, average, median, and commission
 def printValues():
     for i in range (0, len(listOfNums)):
         listOfNumsRounded = format(listOfNums[i], "15,.2f")
         print(f"Property {i + 1} ${listOfNumsRounded}")
-    print(format("Minimum: $","25s"),sort_Min(listOfNums))
-    print(format("Maximum: $","25s"),sort_Max(listOfNums))
-    print(format("Total:  $","25s"),totalValue(listOfNums))
-    print(format("Average:  $","25s"),averageValue(listOfNums))
-    print(format("Median: $","25s"),getMedian(listOfNums))
-    print(format("Commission: $","25s"),commisionValue(listOfNums))
-                       
-
+    print(format("Minimum: ","25s"),sort_Min(listOfNums))
+    print(format("Maximum: ","25s"),sort_Max(listOfNums))
+    print(format("Total:  ","25s"),totalValue(listOfNums))
+    print(format("Average:  ","25s"),averageValue(listOfNums))
+    print(format("Median: ","25s"),dollar_sign, getMedian(listOfNums))
+    print(format("Commission: ","25s"),commisionValue(listOfNums))                  
 main()
