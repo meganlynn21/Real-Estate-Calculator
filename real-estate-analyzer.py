@@ -1,7 +1,6 @@
 # Real Estate Calculator
 
 listOfNums = []
-dollar_sign = "$"
 
 #This function recieves the value from salesPrice and returns a float
 def getFloatInput():
@@ -16,82 +15,57 @@ def getFloatInput():
             print("Input must be a numeric value")
 
 # This function gets the median of the list
-def getMedian(medianOfList):
-    listOfNums.sort()
+def getMedian():
     if len(listOfNums) % 2 != 0:
-        middle_index = int((len(listOfNums) - 1) / 2)
-        listOfNumsFormatted = format(listOfNums[middle_index],"5,.2f")
-        return listOfNumsFormatted
-    elif len(listOfNums) % 2 == 0:
-        middle_index_1 = int(len(listOfNums) / 2)
-        middle_index_2 = int((len(listOfNums) / 2) - 1)
-        sumOfIndex1And2 = listOfNums[middle_index_1] + listOfNums[middle_index_2]
-        averageOfIndex = sumOfIndex1And2 / 2
-        averageFormatted = format(averageOfIndex, "5,.2f")
-        return averageFormatted
+        return listOfNums[int((len(listOfNums)-1)/2)]
+    else:
+        return (listOfNums[int(len(listOfNums)/2)])
+        + (listOfNums[int((len(listOfNums)/2)-1)])/2
    
 # This function uses a list to store the salesPrice values in it and also asks user if they want to add another value.
 def main():
     while True:
         listOfNums.append(getFloatInput())
-        repeat = str(input("Enter another value Y or N: "))
-        repeat = repeat.lower()
-        while True:
-            if repeat == "y":
-                break
-            elif repeat == "n":
-                printValues()
-                break
-            else:
-                repeat = str(input("Enter another value Y or N: "))
-                repeat = repeat.lower()
-                repeat
+        repeat = str(input("Enter another value Y or N: ")).lower()
+        if repeat == "y":
+            continue
+        elif repeat == "n":
+            listOfNums.sort()
+            printValues()
+            break
+        else:
+            repeat = str(input("Enter another value Y or N: "))
 
 #Get minimum of list
-def sort_Min(lst):
-    lstSorted = sorted(lst)
-    minOfList = min(lstSorted)
-    minOfListFormatted = "$ " + format(minOfList,"5,.2f")
-    return minOfListFormatted
+def sort_Min():
+    return min(listOfNums)
 
 # Get maximum of list
-def sort_Max(lst):
-    lstSorted = sorted(lst)
-    maxOfList = max(lstSorted)
-    maxOfListFormatted = "$ " + format(maxOfList,"5,.2f")
-    return maxOfListFormatted
+def sort_Max():
+    return max(listOfNums)
 
 # Gets total
-def totalValue(lst):
-    lstSorted = sorted(lst)
-    sumOfList = sum(lstSorted)
-    sumOfListFormatted = "$ " + format(sumOfList,"5,.2f")
-    return sumOfListFormatted
+def totalValue():
+    return sum(listOfNums)
 
 # Gets average of list
-def averageValue(lst):
-    lstSorted = sorted(lst)
-    averageOfList = sum(lstSorted) / len(listOfNums)
-    averageOfListFormatted = "$ " + format(averageOfList,"5,.2f")
-    return averageOfListFormatted
+def averageValue():
+    return sum(listOfNums)/len(listOfNums)
 
 # Gets commision Value
-def commisionValue(lst):
-    lstSorted = sorted(lst)
-    total = sum(lstSorted)
-    commission = total * .03
-    commissionFormatted = "$ " + format(commission,"5,.2f")
-    return commissionFormatted
+def commisionValue():
+     return sum(listOfNums) * .03
 
 # This function prints values on screen of min, max, total, average, median, and commission
 def printValues():
     for i in range (0, len(listOfNums)):
-        listOfNumsRounded = format(listOfNums[i], "15,.2f")
-        print(f"Property {i + 1} ${listOfNumsRounded}")
-    print(format("Minimum: ","25s"),sort_Min(listOfNums))
-    print(format("Maximum: ","25s"),sort_Max(listOfNums))
-    print(format("Total:  ","25s"),totalValue(listOfNums))
-    print(format("Average:  ","25s"),averageValue(listOfNums))
-    print(format("Median: ","25s"),dollar_sign, getMedian(listOfNums))
-    print(format("Commission: ","25s"),commisionValue(listOfNums))                  
+       print(f"Property {i + 1} $" + format(listOfNums[i], "15,.2f"))
+    print(format("Minimum: ", "25s"), "$", format(sort_Min(), "5,.2f"))
+    print(format("Maximum: ", "25s"), "$", format(sort_Max(), "5,.2f"))
+    print(format("Total:  ", "25s"), "$", format(totalValue(), "5,.2f"))
+    print(format("Average:  ", "25s"), "$", format(averageValue(), "5,.2f"))
+    print(format("Median: ", "25s"), "$", format(getMedian(), "5,.2f"))
+    print(format("Commission: ", "25s"), "$", format(commisionValue(), "5,.2f"))
+
+            
 main()
